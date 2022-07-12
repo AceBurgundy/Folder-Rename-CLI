@@ -45,6 +45,19 @@ def remove_words(folders):
         result = [word for word in folders[name].split() if word not in items_to_remove]
         os.rename(folders[name], " ".join(result))
         
+def incrementFolders(folders):
+    clear()
+    print("""\n
+    Simply adds numbers to each folder name to sequentialize them\n
+""")
+    if prompt():
+        for name in range(len(folders)):
+            if name < 10:
+                os.rename(folders[name], folders[name] + " 0" + str(name))
+            else:
+                os.rename(folders[name], folders[name] + " " + str(name))
+
+
 def choose(location):
     clear()
     os.chdir(location)
@@ -78,7 +91,7 @@ def main():
     Features
         Remove unwanted folder details like "[English], Eng Sub, 1080p"
         Remove unwanted symbols like -*&^%
-        Add numbers to each folder to sequentialize them
+        Add numbers to each folder name to sequentialize them
         Combine 1st and 2nd
         
     To start, copy the path of the parent folder you want to manage
