@@ -57,6 +57,47 @@ def incrementFolders(folders):
             else:
                 os.rename(folders[name], folders[name] + " " + str(name))
 
+def remove_symbols(folders):
+    clear()
+    removal_option = input("""
+    Manually add symbols? M\n
+    Remove all symbols?   R\n
+    Input: """)
+    
+    if removal_option == 'M':
+        clear()
+        print("""\n
+    To manually remove symbols simply type all symbols without any space
+    
+    ex: ?&^$% 
+    
+    (Please do not include any of these character ' " ][ }{ () \ / )""")
+        
+        banned =["'",'"',"[","]","(",")","}","{","\\","/"]
+        
+        symbols = input("    Place symbols here: ")
+        
+        while symbols in banned:
+            symbols = input("    Please mind the quotation marks: ")
+            if symbols not in banned:
+                continue
+        
+        if prompt():
+            for name in range(len(folders)):
+                os.rename(folders[name], ''.join(words for words in folders[name] if words not in set(symbols)))
+            print("    Action Completed :)")   
+    
+    elif removal_option == 'R':
+        clear()    
+        print("""\n
+        this will help remove all symbols in your files folders. 
+        Becareful as this may remove important symbols necessary for folder readability\n
+    """)
+        pattern = re.compile(r"[^a-zA-Z0-9 ]")
+        if prompt():
+            for name in (len(folders)):
+                new_folder_name = re.sub(pattern, "", folders[name])
+                os.rename(folders[name], new_folder_name)
 
 def choose(location):
     clear()
