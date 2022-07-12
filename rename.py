@@ -1,3 +1,14 @@
+import re
+
+def fixPathName(location):
+    pattern = re.compile(r'\s+')
+    if "\\" in location:
+        folder_directory = re.sub(pattern, ' ', location.replace("\\","/"))
+        return folder_directory
+    else:
+        print("    this is not a directory")
+        
+        
 def main():
     location = fixPathName(input("""
     Folder Renaming System in python
