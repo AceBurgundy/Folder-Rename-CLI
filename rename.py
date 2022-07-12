@@ -30,9 +30,9 @@ def fixPathName(location):
 def remove_words(folders):
     clear()
     print("""\n
-    Enter the files you want to remove (separate each one with a comma) ex: (C89),(C90),[English],~,1080p")
+    Enter the files you want to remove (separate each one with a space) ex: (C89) (C90) [English] ~ 1080p")
     for words in parenthesis ex: (English Sub)
-    separate them like this => (English , Sub) 
+    simply type them as such => (English Sub) 
 
     To prevent errors, I advice you to do this on the notepad first 
 
@@ -48,7 +48,7 @@ def remove_words(folders):
 def incrementFolders(folders):
     clear()
     print("""\n
-    Simply adds numbers to each folder name to sequentialize them\n
+    Simply adds numbers to each folder name to sequentialize them
 """)
     if prompt():
         for name in range(len(folders)):
@@ -71,9 +71,9 @@ def remove_symbols(folders):
     
     ex: ?&^$% 
     
-    (Please do not include any of these character ' " ][ }{ () \ / )""")
+    (Please do not include any of these character ' " ][ }{ () \ / ) < > ? | * """)
         
-        banned =["'",'"',"[","]","(",")","}","{","\\","/"]
+        banned =["'",'"',"[","]","(",")","}","{","\\","/","?","*","|",">","<"]
         
         symbols = input("    Place symbols here: ")
         
@@ -85,19 +85,18 @@ def remove_symbols(folders):
         if prompt():
             for name in range(len(folders)):
                 os.rename(folders[name], ''.join(words for words in folders[name] if words not in set(symbols)))
-            print("    Action Completed :)")   
+            print("\n    Action Completed :)\n")   
     
     elif removal_option == 'R':
         clear()    
         print("""\n
-        this will help remove all symbols in your files folders. 
-        Becareful as this may remove important symbols necessary for folder readability\n
-    """)
+    this will help remove all symbols in your files folders. 
+    Becareful as this may remove important symbols necessary for folder readability""")
         pattern = re.compile(r"[^a-zA-Z0-9 ]")
         if prompt():
-            for name in (len(folders)):
+            for name in range(len(folders)):
                 new_folder_name = re.sub(pattern, "", folders[name])
-                os.rename(folders[name], new_folder_name)
+                os.replace(folders[name], new_folder_name)
 
 def basic(folders):
     clear()
@@ -143,8 +142,7 @@ def main():
     
     ex: D:\Parent\Child
     
-    path: 
-"""))
+    path: """))
     
     choose(location)
     
