@@ -1,9 +1,24 @@
 import re
 import os
+import sys 
 
 def clear():
     os.system("cls")
     
+def prompt():
+    
+    proceed = input("\n    Continue? Y|N: ")
+    
+    while not 'Y' or not 'N':
+        proceed = input("\n    Continue? Y|N: ")
+        
+    if proceed == 'Y':
+        return True
+
+    elif proceed == 'N':
+        print("    Cautious are we?")
+        sys.exit(0)
+         
 def fixPathName(location):
     pattern = re.compile(r'\s+')
     if "\\" in location:
