@@ -99,6 +99,10 @@ def remove_symbols(folders):
                 new_folder_name = re.sub(pattern, "", folders[name])
                 os.rename(folders[name], new_folder_name)
 
+def basic(folders):
+    clear()
+    print(":0") 
+    
 def choose(location):
     clear()
     os.chdir(location)
