@@ -12,6 +12,24 @@ def fixPathName(location):
     else:
         print("    this is not a directory")
 
+def remove_words(folders):
+    clear()
+    print("""\n
+    Enter the files you want to remove (separate each one with a comma) ex: (C89),(C90),[English],~,1080p")
+    for words in parenthesis ex: (English Sub)
+    separate them like this => (English , Sub) 
+
+    To prevent errors, I advice you to do this on the notepad first 
+
+    Shortcuts for copy and pasting in the terminal is ctrl + shift + key\n""")
+    
+    items = {input("    Enter here: ")}
+    items_to_remove = ",".join(items).split()
+    
+    for name in range(len(folders)):
+        result = [word for word in folders[name].split() if word not in items_to_remove]
+        os.rename(folders[name], " ".join(result))
+        
 def choose(location):
     clear()
     os.chdir(location)
